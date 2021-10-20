@@ -15,11 +15,10 @@ type EchoServer struct {
 }
 
 func (e *EchoServer) Echo(server echo.Echo_EchoServer) error {
-	var s string
 	for {
 		r, err := server.Recv()
 		if err == nil {
-			s = s + " " + r.Msg
+			server.Send(&echo.EchoResponse{Msg: "return " + r.Msg})
 			continue
 		}
 		if errors.Is(err, io.EOF) {
@@ -27,7 +26,6 @@ func (e *EchoServer) Echo(server echo.Echo_EchoServer) error {
 		}
 		return err
 	}
-	server.SendAndClose(&echo.EchoResponse{Msg: s})
 	return nil
 }
 

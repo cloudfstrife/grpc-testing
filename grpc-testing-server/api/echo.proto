@@ -13,5 +13,5 @@ message EchoResponse {
 }
 
 service echo {
-    rpc Echo(stream EchoRequest) returns (EchoResponse) {}
+    rpc Echo(stream EchoRequest) returns (stream EchoResponse) {}
 }

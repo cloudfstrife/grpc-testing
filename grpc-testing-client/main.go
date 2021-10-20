@@ -27,10 +27,15 @@ func main() {
 		if err != nil {
 			log.Fatal("send msg error", err)
 		}
+
+		resp, err := r.Recv()
+		if err != nil {
+			log.Fatal("recv msg error", err)
+		}
+		fmt.Println(resp.Msg)
 	}
-	response, err := r.CloseAndRecv()
+	err = r.CloseSend()
 	if err != nil {
-		log.Fatal("close and recv error", err)
+		log.Fatal("close send error", err)
 	}
-	fmt.Println(response.Msg)
 }
