@@ -13,3 +13,15 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+go.sum
+
+/grpc-testing-server/grpc-testing-server
+/grpc-testing-client/grpc-testing-client
+
+
+/grpc-testing-server/api/*
+!/grpc-testing-server/api/echo.proto
+
+/grpc-testing-client/api/*
+!/grpc-testing-client/api/echo.proto
