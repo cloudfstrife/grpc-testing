@@ -3,9 +3,7 @@ package main
 import (
 	"app/grpc-testing-client/api/echo"
 	"context"
-	"errors"
 	"fmt"
-	"io"
 	"log"
 
 	"google.golang.org/grpc"
@@ -20,20 +18,19 @@ func main() {
 	c := echo.NewEchoClient(conn)
 	ctx, cancle := context.WithCancel(context.Background())
 	defer cancle()
-	r, err := c.Echo(ctx, &echo.EchoRequest{Msg: "hello"})
+	r, err := c.Echo(ctx)
 	if err != nil {
 		log.Fatalf("echo failed :%#v", err)
 	}
-	for {
-		resp, err := r.Recv()
-		if err == nil {
-			fmt.Println(resp.Msg)
-			continue
+	for i := 0; i < 10; i++ {
+		err = r.Send(&echo.EchoRequest{Msg: fmt.Sprintf("hello - %d", i)})
+		if err != nil {
+			log.Fatal("send msg error", err)
 		}
-
-		if errors.Is(err, io.EOF) {
-			break
-		}
-		log.Fatal("error", err)
 	}
+	response, err := r.CloseAndRecv()
+	if err != nil {
+		log.Fatal("close and recv error", err)
+	}
+	fmt.Println(response.Msg)
 }
