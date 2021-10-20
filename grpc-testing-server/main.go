@@ -2,7 +2,6 @@ package main
 
 import (
 	"app/grpc-testing-server/api/echo"
-	"context"
 	"log"
 	"net"
 
@@ -13,11 +12,12 @@ type EchoServer struct {
 	echo.UnimplementedEchoServer
 }
 
-func (e *EchoServer) Echo(ctx context.Context, par *echo.EchoRequest) (*echo.EchoResponse, error) {
-	result := &echo.EchoResponse{
-		Msg: par.GetMsg(),
+func (e *EchoServer) Echo(par *echo.EchoRequest, echoserver echo.Echo_EchoServer) error {
+	msg := par.GetMsg()
+	for i := 0; i < 10; i++ {
+		echoserver.Send(&echo.EchoResponse{Msg: msg})
 	}
-	return result, nil
+	return nil
 }
 
 func main() {
