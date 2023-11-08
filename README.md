@@ -1,2 +1,2 @@
 # grpc-testing
-grpc demo
+code for gRPC tutorial
