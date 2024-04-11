@@ -1,10 +1,11 @@
 package main
 
 import (
-	"app/grpc-testing-client/api/echo"
 	"context"
 	"fmt"
 	"log"
+
+	"app.tech/grpc-testing-client/api/echo"
 
 	"google.golang.org/grpc"
 )

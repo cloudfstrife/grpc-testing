@@ -1,11 +1,12 @@
 package main
 
 import (
-	"app/grpc-testing-server/api/echo"
 	"errors"
 	"io"
 	"log"
 	"net"
+
+	"app.tech/grpc-testing-server/api/echo"
 
 	"google.golang.org/grpc"
 )
