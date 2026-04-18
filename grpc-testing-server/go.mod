@@ -1,17 +1,15 @@
 module app.tech/grpc-testing-server
 
-go 1.23.0
-
-toolchain go1.24.0
+go 1.25.0
 
 require (
-	google.golang.org/grpc v1.72.0
-	google.golang.org/protobuf v1.36.6
+	google.golang.org/grpc v1.80.0
+	google.golang.org/protobuf v1.36.11
 )
 
 require (
-	golang.org/x/net v0.40.0 // indirect
-	golang.org/x/sys v0.33.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250505200425-f936aa4a68b2 // indirect
+	golang.org/x/net v0.53.0 // indirect
+	golang.org/x/sys v0.43.0 // indirect
+	golang.org/x/text v0.36.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260414002931-afd174a4e478 // indirect
 )
